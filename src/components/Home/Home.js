@@ -2,7 +2,11 @@ import styles from "./Home.module.css"
 
 import { useState, useEffect, useLayoutEffect } from "react"
 
+import ArticleCard from "../layout/articleCard/ArticleCard"
+import Container from "../container/Container"
+
 function Home() {
+
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
@@ -35,11 +39,16 @@ function Home() {
         }
     }, [articles])
 
-    console.log(articles)
-
     return (
         <div>
-            home
+            <Container layout="articles_list">
+                {articles && articles.map((article) => (
+                    <ArticleCard
+                        key={article.id}
+                        title={article.title}
+                        publishedAt={article.publishedAt} />
+                ))}
+            </Container>
         </div>
     )
 }

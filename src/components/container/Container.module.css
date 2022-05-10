@@ -1,0 +1,7 @@
+.articles_list {
+    width: 80%;
+    height: 80%;
+    margin: 30px auto;
+    border: 2px solid rgba(0, 0, 0, 0.596);
+    border-radius: 35px;
+}

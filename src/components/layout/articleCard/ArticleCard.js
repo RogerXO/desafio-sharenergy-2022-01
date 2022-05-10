@@ -1,9 +1,10 @@
 import styles from "./ArticleCard.module.css"
 
-function ArticleCard({ title, publishedAt }) {
+function ArticleCard({ key, title, publishedAt }) {
     return (
-        <article>
-            
+        <article key={key}>
+            <h3>{title}</h3>
+            <p>{publishedAt}</p>
         </article>
     )
 }

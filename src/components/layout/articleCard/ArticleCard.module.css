@@ -1,0 +1,10 @@
+article {
+    border: 1px solid black;
+    margin: 50px;
+    padding: 5px;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
