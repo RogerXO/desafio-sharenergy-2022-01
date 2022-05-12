@@ -1,0 +1,14 @@
+.search_div {
+    width: 73%;
+    height: 80%;
+    margin: 2% auto 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.search_input {
+    border: 1px solid black;
+    border-radius: 12px;
+    width: 50%;
+}

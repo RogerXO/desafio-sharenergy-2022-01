@@ -63,10 +63,12 @@ function Home() {
 
     return (
         <section>
-            <PaginationSelect articlesPerPage={articlesPerPage} setArticlesPerPage={setArticlesPerPage} />
-            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+            <div className={styles.search_div}>
+                <input className={styles.search_input} type="search" placeholder=" Search for..." value={search} onChange={(e) => setSearch(e.target.value)} />
+                <PaginationSelect articlesPerPage={articlesPerPage} setArticlesPerPage={setArticlesPerPage} />
+            </div>
             <Container layout="articles_list">
-                {articles && filteredArticles.map((article) => (
+                {articles && currentArticles.map((article) => (
                     <ArticleCard
                         id={article.id}
                         title={article.title}
