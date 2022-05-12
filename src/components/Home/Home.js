@@ -1,22 +1,31 @@
 import styles from "./Home.module.css"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 
 import ArticleCard from "../layout/articleCard/ArticleCard"
 import Container from "../container/Container"
-import PaginationComponent from "../pagination/PaginationComponent/PaginationComponent"
-import PaginationSelect from "../pagination/PaginationSelect/PaginationSelect"
+import PaginationComponent from "../layout/pagination/PaginationComponent/PaginationComponent"
+import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSelect"
 
 function Home() {
 
     const [articles, setArticles] = useState([])
     const [articlesPerPage, setArticlesPerPage] = useState(10)
     const [currentPage, setCurrentPage] = useState(0)
+    const [search, setSearch] = useState('')
 
     const pages = Math.ceil(articles.length / articlesPerPage)
     const startIndex = currentPage * articlesPerPage
     const endIndex = startIndex + articlesPerPage
     const currentArticles = articles.slice(startIndex, endIndex)
+
+    const filteredArticles = useMemo(() => {
+        const lowerSearch = search.toLowerCase()
+
+        return articles.filter((article) => {
+            return article.title.toLowerCase().includes(lowerSearch)
+        })
+    }, [search])
 
     useEffect(() => {
         fetch("https://api.spaceflightnewsapi.net/v3/articles", {
@@ -37,10 +46,10 @@ function Home() {
 
             articles.reduce(function (prev, cur) {
                 if (prev < cur.publishedAt) {
-                    sortedArticles.unshift(prev)
+                    return sortedArticles.unshift(prev)
                 }
                 else {
-                    sortedArticles.push(cur)
+                    return sortedArticles.push(cur)
                 }
             }, sortedArticles)
 
@@ -53,20 +62,19 @@ function Home() {
     }, [articlesPerPage])
 
     return (
-        <div>
+        <section>
             <PaginationSelect articlesPerPage={articlesPerPage} setArticlesPerPage={setArticlesPerPage} />
-
+            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
             <Container layout="articles_list">
-                {articles && currentArticles.map((article) => (
+                {articles && filteredArticles.map((article) => (
                     <ArticleCard
                         id={article.id}
                         title={article.title}
                         publishedAt={article.publishedAt} />
                 ))}
             </Container>
-
             <PaginationComponent currentPage={currentPage} setCurrentPage={setCurrentPage} pages={pages} />
-        </div>
+        </section>
     )
 }
 
