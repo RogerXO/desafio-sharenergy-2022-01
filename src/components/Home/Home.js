@@ -14,10 +14,15 @@ function Home() {
     const [currentPage, setCurrentPage] = useState(0)
     const [search, setSearch] = useState('')
 
+    //Pagination
     const pages = Math.ceil(articles.length / articlesPerPage)
     const startIndex = currentPage * articlesPerPage
     const endIndex = startIndex + articlesPerPage
     const currentArticles = articles.slice(startIndex, endIndex)
+
+
+    //aplicar primeiro a busca e sobre o resultado da busca aplicar a paginação
+    //Se n digitarem nada, escrever o filtro da busca de uma maneira q sempre retorna o resultado
 
     const filteredArticles = useMemo(() => {
         const lowerSearch = search.toLowerCase()
