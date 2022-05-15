@@ -10,27 +10,19 @@ import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSe
 function Home() {
 
     const [articles, setArticles] = useState([])
-    const [articlesPerPage, setArticlesPerPage] = useState(10)
+    const [articlesPerPage, setArticlesPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(0)
     const [search, setSearch] = useState('')
+    const [listedArticles, setListedArticles] = useState([])
 
     //Pagination
-    const pages = Math.ceil(articles.length / articlesPerPage)
+    const pages = Math.ceil(listedArticles.length / articlesPerPage)
     const startIndex = currentPage * articlesPerPage
     const endIndex = startIndex + articlesPerPage
-    const currentArticles = articles.slice(startIndex, endIndex)
-
+    const currentArticles = listedArticles.slice(startIndex, endIndex)
 
     //aplicar primeiro a busca e sobre o resultado da busca aplicar a paginação
     //Se n digitarem nada, escrever o filtro da busca de uma maneira q sempre retorna o resultado
-
-    const filteredArticles = useMemo(() => {
-        const lowerSearch = search.toLowerCase()
-
-        return articles.filter((article) => {
-            return article.title.toLowerCase().includes(lowerSearch)
-        })
-    }, [search])
 
     useEffect(() => {
         fetch("https://api.spaceflightnewsapi.net/v3/articles", {
@@ -40,7 +32,10 @@ function Home() {
             }
         })
             .then((resp) => resp.json())
-            .then((data) => setArticles(data))
+            .then((data) => {
+                setArticles(data)
+                setListedArticles(data)
+            })
             .catch((err) => console.log(err))
     }, [])
 
@@ -62,9 +57,21 @@ function Home() {
         }
     }, [articles])
 
+    const filteredArticles = useMemo(() => {
+        const lowerSearch = search.toLowerCase()
+
+        return articles.filter((article) => {
+            return article.title.toLowerCase().includes(lowerSearch)
+        })
+    }, [search])
+
     useEffect(() => {
         setCurrentPage(0)
     }, [articlesPerPage])
+
+    useEffect(() => {
+        setListedArticles(filteredArticles)
+    }, [search])
 
     return (
         <section>
