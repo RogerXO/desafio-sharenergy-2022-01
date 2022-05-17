@@ -1,6 +1,7 @@
 import styles from "../Pagination.module.css"
 
 function PaginationSelect({ articlesPerPage, setArticlesPerPage }) {
+    
     return (
         <div className={styles.select_div}>
             <span>Articles per page: </span>

@@ -1,0 +1,11 @@
+.date_range_picker {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.date_picker {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}

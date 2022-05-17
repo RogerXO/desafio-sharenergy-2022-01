@@ -2,10 +2,15 @@ article {
     border: 1px solid black;
     width: 80%;
     padding: 5px;
-    border-radius: 15px;
     margin: 10px 0px;
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+article:hover {
+    background-color: rgba(128, 128, 128, 0.349);
+    cursor: pointer;
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.336);
 }
