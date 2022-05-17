@@ -2,7 +2,7 @@ import styles from "./DatePicker.module.css"
 
 import moment from 'moment'
 
-function DatePicker({ startDate, endDate, setStartDate, setEndDate }) {
+function DatePicker({ startDate, endDate, setStartDate, setEndDate, submitDate }) {
     const today = moment(new Date()).format('YYYY-MM-DD')
 
     return (
@@ -13,8 +13,10 @@ function DatePicker({ startDate, endDate, setStartDate, setEndDate }) {
                     type="date"
                     name="fromDate"
                     id="fromDate"
+                    placeholder="Date"
+                    onfocus="(this.type='date')"
+                    onblur="(this.type='text')"
                     max={today}
-                    value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
             </div>
@@ -25,11 +27,10 @@ function DatePicker({ startDate, endDate, setStartDate, setEndDate }) {
                     name="toDate"
                     id="toDate"
                     max={today}
-                    value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                 />
             </div>
-            <button type="submit">Search</button>
+            <button type="submit" onClick={submitDate}>Search</button>
         </div>
     )
 }

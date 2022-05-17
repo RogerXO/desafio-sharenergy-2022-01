@@ -1,7 +1,5 @@
 import styles from "./ArticleCard.module.css"
 
-import moment from 'moment'
-
 function ArticleCard({ id, title, publishedAt }) {
     
     return (

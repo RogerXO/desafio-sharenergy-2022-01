@@ -9,6 +9,7 @@ import Container from "../container/Container"
 import PaginationComponent from "../layout/pagination/PaginationComponent/PaginationComponent"
 import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSelect"
 import DatePicker from "../layout/DatePicker/DatePicker"
+import { formControlUnstyledClasses } from "@mui/base"
 
 function Home() {
 
@@ -72,8 +73,8 @@ function Home() {
             return moment(article.publishedAt).format("YYYY-MM-DD")
         })
 
-        for (let i = 0; i < listedArticles.length; i++) {
-            listedArticles[i].publishedAt = formatedDate[i]
+        for (let i = 0; i < articles.length; i++) {
+            articles[i].publishedAt = formatedDate[i]
         }
 
         return articles.filter((article) => {
@@ -95,15 +96,9 @@ function Home() {
         }
     }, [search])
 
-    useEffect(() => {
+    function submitDate() {
         setListedArticles(filteredArticlesByDate)
-    }, [endDate])
-
-    useEffect(() => {
-        listedArticles.map((article) => {
-            new Date(article.publishedAt).toDateString()
-        })
-    }, [listedArticles])
+    }
 
     return (
         <section>
@@ -119,6 +114,7 @@ function Home() {
                     setEndDate={setEndDate}
                     startDate={startDate}
                     setStartDate={setStartDate}
+                    submitDate={submitDate}
                 />
                 <PaginationSelect
                     articlesPerPage={articlesPerPage}
