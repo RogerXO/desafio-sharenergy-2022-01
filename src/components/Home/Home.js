@@ -45,22 +45,20 @@ function Home() {
         const sortedArticlesByLatest = []
 
         articles.reduce(function (prev, cur) {
-
             if (prev < cur.publishedAt) {
                 return sortedArticlesByLatest.unshift(prev)
             }
             else {
                 return sortedArticlesByLatest.push(cur)
             }
-
         }, sortedArticlesByLatest)
 
+        setArticles(sortedArticlesByLatest)
         setListedArticles(sortedArticlesByLatest)
     }, [])
 
     // Search filter
     const filteredArticles = useMemo(() => {
-
         const lowerSearch = search.toLowerCase()
 
         return articles.filter((article) => {
@@ -70,6 +68,13 @@ function Home() {
 
     // Date Filter
     const filteredArticlesByDate = useMemo(() => {
+        const formatedDate = articles.map((article) => {
+            return moment(article.publishedAt).format("YYYY-MM-DD")
+        })
+
+        for (let i = 0; i < listedArticles.length; i++) {
+            listedArticles[i].publishedAt = formatedDate[i]
+        }
 
         return articles.filter((article) => {
             if (article.publishedAt >= startDate && article.publishedAt <= endDate) {
@@ -78,15 +83,11 @@ function Home() {
         })
     }, [searchDate])
 
-    console.log(filteredArticlesByDate)
-
     useEffect(() => {
-
         setCurrentPage(0)
     }, [articlesPerPage])
 
     useEffect(() => {
-
         setListedArticles(filteredArticles)
 
         if (!search) {
@@ -95,13 +96,14 @@ function Home() {
     }, [search])
 
     useEffect(() => {
+        setListedArticles(filteredArticlesByDate)
+    }, [endDate])
 
+    useEffect(() => {
         listedArticles.map((article) => {
             new Date(article.publishedAt).toDateString()
         })
     }, [listedArticles])
-
-    console.log(listedArticles)
 
     return (
         <section>
