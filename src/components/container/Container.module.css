@@ -1,10 +1,26 @@
 .articles_list {
     width: 80%;
-    height: 80%;
+    height: 100%;
     margin: 2% auto;
-    border: 2px solid rgba(0, 0, 0, 0.596);
+    border: 2px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px 0px;
+    background-color: rgba(239, 233, 231, 0.377);
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.11);
+    border-radius: 5px;
+}
+
+.articles_read {
+    background-color: white;
+    width: 60%;
+    height: 70%;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 2px 1px 5px 2px rgba(0, 0, 0, 0.247);
 }

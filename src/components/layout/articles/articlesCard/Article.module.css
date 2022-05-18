@@ -1,0 +1,33 @@
+.article_read {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.div_img {
+    background-color: black;
+    height: 50%;
+    display: flex;
+}
+
+.div_img img {
+    width: 60%;
+    height: 100%;
+    margin: 0px auto;
+}
+
+.notice_data {
+    margin: 0px 25px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.notice_data span {
+    font-size: 14px;
+    margin: 0 0px 5px 40px;
+}
+
+.notice_data a:hover {
+    color: grey;
+}

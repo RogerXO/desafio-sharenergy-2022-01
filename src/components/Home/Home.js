@@ -4,12 +4,11 @@ import { useState, useEffect, useMemo } from "react"
 
 import moment from 'moment'
 
-import ArticleCard from "../layout/articleCard/ArticleCard"
+import ArticleCard from "../layout/articles/articleCard/ArticleCard"
 import Container from "../container/Container"
 import PaginationComponent from "../layout/pagination/PaginationComponent/PaginationComponent"
 import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSelect"
-import DatePicker from "../layout/DatePicker/DatePicker"
-import { formControlUnstyledClasses } from "@mui/base"
+import DatePicker from "../layout/datePicker/DatePicker"
 
 function Home() {
 

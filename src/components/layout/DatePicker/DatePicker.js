@@ -5,6 +5,11 @@ import moment from 'moment'
 function DatePicker({ startDate, endDate, setStartDate, setEndDate, submitDate }) {
     const today = moment(new Date()).format('YYYY-MM-DD')
 
+    function sendDate(e) {
+        e.preventDefault()
+        submitDate()
+    }
+
     return (
         <div className={styles.date_range_picker}>
             <div className={styles.date_picker}>
@@ -13,9 +18,6 @@ function DatePicker({ startDate, endDate, setStartDate, setEndDate, submitDate }
                     type="date"
                     name="fromDate"
                     id="fromDate"
-                    placeholder="Date"
-                    onfocus="(this.type='date')"
-                    onblur="(this.type='text')"
                     max={today}
                     onChange={(e) => setStartDate(e.target.value)}
                 />
@@ -30,7 +32,7 @@ function DatePicker({ startDate, endDate, setStartDate, setEndDate, submitDate }
                     onChange={(e) => setEndDate(e.target.value)}
                 />
             </div>
-            <button type="submit" onClick={submitDate}>Search</button>
+            <button type="submit" onClick={sendDate}>Search</button>
         </div>
     )
 }
