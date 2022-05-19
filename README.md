@@ -13,4 +13,5 @@ You just need to use "npm start" to view the application running in your browese
 ## App Video
 
 You can watch a short video where I explain the app usage and the code
-Link: 
+
+Link: [https://youtu.be/aZnTEKJ10GA](https://youtu.be/aZnTEKJ10GA)

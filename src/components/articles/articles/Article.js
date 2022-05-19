@@ -5,7 +5,7 @@ import moment from "moment"
 import { useParams } from "react-router-dom"
 import { useState, useEffect, useMemo, useContext } from 'react'
 
-import { ArticlesContext } from '../../../contexts/Articles'
+import { ArticlesContext } from '../../../contexts/ContextArticles'
 
 import Container from '../../layout/container/Container'
 import ArticleButton from '../../layout/ArticleButton/ArticleButton'

@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useContext } from "react"
 
 import moment from 'moment'
 
-import { ArticlesContext } from "../../contexts/Articles"
+import { ArticlesContext } from "../../contexts/ContextArticles"
 import ArticleCard from "../articles/articleCard/ArticleCard"
 import Container from "../layout/container/Container"
 import PaginationComponent from "../layout/pagination/PaginationComponent/PaginationComponent"
