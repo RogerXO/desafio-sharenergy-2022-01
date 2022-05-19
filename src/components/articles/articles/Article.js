@@ -14,14 +14,14 @@ import Loading from "../../layout/loading/Loading"
 function Article() {
     const { id } = useParams()
 
-    const { getArticles } = useContext(ArticlesContext)
+    const { provideArticles } = useContext(ArticlesContext)
 
     const [article, setArticle] = useState({})
     const [nextArticle, setNextArticle] = useState()
     const [prevArticle, setPrevArticle] = useState()
     const [visibleLoading, setVisibleLoading] = useState(true)
 
-    const articles = getArticles
+    const articles = provideArticles
 
     const currentArticleIndex = useMemo(() => {
         return articles.findIndex(x => x.id === article.id)

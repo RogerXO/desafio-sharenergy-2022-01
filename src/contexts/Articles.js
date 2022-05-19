@@ -1,10 +1,10 @@
-import { createContext,  useEffect,  useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const ArticlesContext = createContext()
 
 export const ArticlesProvider = ({ children }) => {
-    const [getArticles, setGetArticles] = useState([])
-    
+    const [provideArticles, setProvideArticles] = useState([])
+
     const fetchArticles = () => {
         fetch("https://api.spaceflightnewsapi.net/v3/articles", {
             method: "GET",
@@ -14,17 +14,17 @@ export const ArticlesProvider = ({ children }) => {
         })
             .then((resp) => resp.json())
             .then((data) => {
-                setGetArticles(data)
+                setProvideArticles(data)
             })
             .catch((err) => console.log(err))
     }
 
     useEffect(() => {
         fetchArticles()
-    },[])
+    }, [])
 
     return (
-        <ArticlesContext.Provider value={{ getArticles, fetchArticles: fetchArticles }}>
+        <ArticlesContext.Provider value={{ provideArticles }}>
             {children}
         </ArticlesContext.Provider>
     )

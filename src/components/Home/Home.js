@@ -12,7 +12,7 @@ import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSe
 import DatePicker from "../layout/datePicker/DatePicker"
 
 function Home() {
-    const { getArticles } = useContext(ArticlesContext)
+    const { provideArticles } = useContext(ArticlesContext)
 
     const [articlesPerPage, setArticlesPerPage] = useState(10)
     const [currentPage, setCurrentPage] = useState(0)
@@ -21,7 +21,7 @@ function Home() {
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
 
-    const articles = getArticles
+    const articles = provideArticles
 
     //Pagination
     const pages = Math.ceil(listedArticles.length / articlesPerPage)
@@ -29,7 +29,7 @@ function Home() {
     const endIndex = startIndex + articlesPerPage
     const currentArticles = listedArticles.slice(startIndex, endIndex)
 
-    useEffect(() => {
+    useMemo(() => {
         const sortedArticlesByLatest = articles.sort(function (a, b) {
             return new Date(b.publishedAt) - new Date(a.publishedAt);
         });
