@@ -14,7 +14,6 @@ import DatePicker from "../layout/datePicker/DatePicker"
 function Home() {
     const { provideArticles } = useContext(ArticlesContext)
 
-    const [isVisibleLoading, setIsVisibleLoading] = useState(true)
     const [articlesPerPage, setArticlesPerPage] = useState(10)
     const [currentPage, setCurrentPage] = useState(0)
     const [search, setSearch] = useState('')
@@ -29,13 +28,6 @@ function Home() {
     const startIndex = currentPage * articlesPerPage
     const endIndex = startIndex + articlesPerPage
     const currentArticles = listedArticles.slice(startIndex, endIndex)
-
-    useEffect(() => {
-        setIsVisibleLoading(true)
-        if (listedArticles) {
-            setIsVisibleLoading(false)
-        }
-    }, [])
 
     useMemo(() => {
         const sortedArticlesByLatest = articles.sort(function (a, b) {
