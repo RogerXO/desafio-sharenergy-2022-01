@@ -1,0 +1,15 @@
+.article_btn {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 25px;
+    margin: 0 5%;
+    width: 100%;
+    height: 100%;
+}
+
+.article_btn:hover {
+    background-color: rgba(199, 191, 191, 0.795);
+    transition: 0.4s;
+    cursor: pointer;
+}

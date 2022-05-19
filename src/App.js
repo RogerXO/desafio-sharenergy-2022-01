@@ -11,9 +11,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/prevArticle/:id" element={<Article />} />
         <Route path="/article/:id" element={<Article />} />
-        <Route path="/nextArticle/:id" element={<Article />} />
       </Routes>
     </Router>
   );

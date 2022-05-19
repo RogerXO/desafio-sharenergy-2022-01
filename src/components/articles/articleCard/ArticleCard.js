@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 function ArticleCard({ id, title, publishedAt }) {
 
     return (
-        <Link to={`/article/${id}`}>
+        <Link to={`/article/${id}`} className={styles.article_card_a    }>
             <article key={id} className={styles.article_listed} >
                 <h3>{title}</h3>
                 <p>{publishedAt}</p>

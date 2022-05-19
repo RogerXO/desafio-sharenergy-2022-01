@@ -4,7 +4,9 @@ import moment from "moment"
 
 import { useParams, useNavigate, Link } from "react-router-dom"
 import { useState, useEffect, useMemo } from 'react'
+
 import Container from '../../layout/container/Container'
+import ArticleButton from '../../layout/ArticleButton/ArticleButton'
 
 function Article() {
     const { id } = useParams()
@@ -13,12 +15,12 @@ function Article() {
 
     const [articles, setArticles] = useState([])
     const [article, setArticle] = useState([])
-    const [nextArticle, setNextArticle] = useState([])
-    const [prevArticle, setPrevArticle] = useState([])
+    const [nextArticle, setNextArticle] = useState()
+    const [prevArticle, setPrevArticle] = useState()
 
     // OK - fetch the whole articles
-    // NA - filter the next and previous ID by actual article ID and set nextID and previousID
-    // NA - Then Link and navigate to the those articles
+    // OK - filter the next and previous ID by actual article ID and set nextID and previousID
+    // NA - Then Link and navigate to the articles details
 
     useEffect(() => {
         fetch(`https://api.spaceflightnewsapi.net/v3/articles/${id}`, {
@@ -57,11 +59,15 @@ function Article() {
         setNextArticle(articles[nextArticleIndex])
     }, [article])
 
-    console.log(prevArticle)
-    console.log(nextArticle)
-
     return (
-        <div>
+        <div className={styles.align}>
+            {prevArticle && (
+                <ArticleButton to={`/article/${prevArticle.id}`} text="Prev" />
+            )}
+            {!prevArticle && (
+                <ArticleButton text="Home" to="/" />
+            )}
+
             <article className={styles.article_read}>
                 <Container layout="articles_read">
                     <div className={styles.div_img}>
@@ -76,15 +82,14 @@ function Article() {
                         <a href={article.url} target="_blank">Click here to see the original news</a>
                     </div>
                 </Container>
-                {/* <button>
-                    <Link to="/article/15099">
-                        click Link
-                    </Link>
-                </button>
-                <button onClick={() => navigate('/article/15085')}>
-                    click navigate
-                </button> */}
             </article>
+
+            {nextArticle && (
+                <ArticleButton to={`/article/${nextArticle.id}`} text="Next" />
+            )}
+            {!nextArticle && (
+                <ArticleButton text="Home" to="/" />
+            )}
         </div>
     )
 }
