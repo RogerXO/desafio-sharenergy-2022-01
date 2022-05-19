@@ -4,8 +4,8 @@ import { useState, useEffect, useMemo } from "react"
 
 import moment from 'moment'
 
-import ArticleCard from "../layout/articles/articleCard/ArticleCard"
-import Container from "../container/Container"
+import ArticleCard from "../articles/articleCard/ArticleCard"
+import Container from "../layout/container/Container"
 import PaginationComponent from "../layout/pagination/PaginationComponent/PaginationComponent"
 import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSelect"
 import DatePicker from "../layout/datePicker/DatePicker"
@@ -56,6 +56,8 @@ function Home() {
         setArticles(sortedArticlesByLatest)
         setListedArticles(sortedArticlesByLatest)
     }, [])
+
+    console.log(articles)
 
     // Search filter
     const filteredArticles = useMemo(() => {
