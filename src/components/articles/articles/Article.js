@@ -2,7 +2,7 @@ import styles from './Article.module.css'
 
 import moment from "moment"
 
-import { useParams, useNavigate, Link } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useState, useEffect, useMemo } from 'react'
 
 import Container from '../../layout/container/Container'
@@ -11,8 +11,6 @@ import Loading from "../../layout/loading/Loading"
 
 function Article() {
     const { id } = useParams()
-
-    const navigate = useNavigate()
 
     const [articles, setArticles] = useState([])
     const [article, setArticle] = useState([])
@@ -43,8 +41,6 @@ function Article() {
             .finally((data) => setVisibleLoading(false))
             .catch((err) => console.log(err))
     }, [id])
-
-
 
     useEffect(() => {
         setIsListLoading(true)

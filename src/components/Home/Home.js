@@ -26,8 +26,6 @@ function Home() {
     const endIndex = startIndex + articlesPerPage
     const currentArticles = listedArticles.slice(startIndex, endIndex)
 
-    const searchDate = [startDate, endDate]
-
     useEffect(() => {
         fetch("https://api.spaceflightnewsapi.net/v3/articles", {
             method: "GET",
@@ -81,7 +79,7 @@ function Home() {
                 return article
             }
         })
-    }, [searchDate])
+    }, [startDate, endDate])
 
     useEffect(() => {
         setCurrentPage(0)
