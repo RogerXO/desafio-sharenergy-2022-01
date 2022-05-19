@@ -3,7 +3,9 @@ import styles from './Article.module.css'
 import moment from "moment"
 
 import { useParams } from "react-router-dom"
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useContext } from 'react'
+
+import { ArticlesContext } from '../../../contexts/Articles'
 
 import Container from '../../layout/container/Container'
 import ArticleButton from '../../layout/ArticleButton/ArticleButton'
@@ -12,12 +14,14 @@ import Loading from "../../layout/loading/Loading"
 function Article() {
     const { id } = useParams()
 
-    const [articles, setArticles] = useState([])
-    const [article, setArticle] = useState([])
+    const { getArticles } = useContext(ArticlesContext)
+
+    const [article, setArticle] = useState({})
     const [nextArticle, setNextArticle] = useState()
     const [prevArticle, setPrevArticle] = useState()
-    const [isListLoading, setIsListLoading] = useState(true)
     const [visibleLoading, setVisibleLoading] = useState(true)
+
+    const articles = getArticles
 
     const currentArticleIndex = useMemo(() => {
         return articles.findIndex(x => x.id === article.id)
@@ -43,30 +47,13 @@ function Article() {
     }, [id])
 
     useEffect(() => {
-        setIsListLoading(true)
-
-        fetch("https://api.spaceflightnewsapi.net/v3/articles", {
-            method: "GET",
-            headers: {
-                "content-type": "application/json"
-            }
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                setArticles(data)
-            })
-            .finally((data) => setIsListLoading(false))
-            .catch((err) => console.log(err))
-    }, [])
-
-    useEffect(() => {
         setPrevArticle(articles[prevArticleIndex])
         setNextArticle(articles[nextArticleIndex])
     }, [nextArticleIndex])
 
     return (
         <div>
-            {!visibleLoading && !isListLoading ? (
+            {!visibleLoading ? (
                 <div className={styles.align}>
                     {prevArticle && (
                         <ArticleButton to={`/article/${prevArticle.id}`} text="Prev" />

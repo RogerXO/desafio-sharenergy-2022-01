@@ -1,9 +1,10 @@
 import styles from "./Home.module.css"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useContext } from "react"
 
 import moment from 'moment'
 
+import { ArticlesContext } from "../../contexts/Articles"
 import ArticleCard from "../articles/articleCard/ArticleCard"
 import Container from "../layout/container/Container"
 import PaginationComponent from "../layout/pagination/PaginationComponent/PaginationComponent"
@@ -11,14 +12,16 @@ import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSe
 import DatePicker from "../layout/datePicker/DatePicker"
 
 function Home() {
+    const { getArticles } = useContext(ArticlesContext)
 
-    const [articles, setArticles] = useState([])
     const [articlesPerPage, setArticlesPerPage] = useState(10)
     const [currentPage, setCurrentPage] = useState(0)
     const [search, setSearch] = useState('')
     const [listedArticles, setListedArticles] = useState([])
     const [startDate, setStartDate] = useState()
     const [endDate, setEndDate] = useState()
+
+    const articles = getArticles
 
     //Pagination
     const pages = Math.ceil(listedArticles.length / articlesPerPage)
@@ -27,33 +30,14 @@ function Home() {
     const currentArticles = listedArticles.slice(startIndex, endIndex)
 
     useEffect(() => {
-        fetch("https://api.spaceflightnewsapi.net/v3/articles", {
-            method: "GET",
-            headers: {
-                "content-type": "application/json"
-            }
-        })
-            .then((resp) => resp.json())
-            .then((data) => {
-                setArticles(data)
-                setListedArticles(data)
-            })
-            .catch((err) => console.log(err))
+        const sortedArticlesByLatest = articles.sort(function (a, b) {
+            return new Date(b.publishedAt) - new Date(a.publishedAt);
+        });
 
-        const sortedArticlesByLatest = []
-
-        articles.reduce(function (prev, cur) {
-            if (prev < cur.publishedAt) {
-                return sortedArticlesByLatest.unshift(prev)
-            }
-            else {
-                return sortedArticlesByLatest.push(cur)
-            }
-        }, sortedArticlesByLatest)
-
-        setArticles(sortedArticlesByLatest)
         setListedArticles(sortedArticlesByLatest)
-    }, [])
+    }, [articles])
+
+    console.log(currentArticles)
 
     // Search filter
     const filteredArticles = useMemo(() => {
@@ -121,6 +105,7 @@ function Home() {
             <Container layout="articles_list">
                 {articles && currentArticles.map((article) => (
                     <ArticleCard
+                        key={article.id}
                         id={article.id}
                         title={article.title}
                         publishedAt={moment(article.publishedAt).format("MM/DD/YYYY")}
