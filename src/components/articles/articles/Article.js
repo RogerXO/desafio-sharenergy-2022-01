@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo } from 'react'
 
 import Container from '../../layout/container/Container'
 import ArticleButton from '../../layout/ArticleButton/ArticleButton'
+import Loading from "../../layout/loading/Loading"
 
 function Article() {
     const { id } = useParams()
@@ -17,12 +18,18 @@ function Article() {
     const [article, setArticle] = useState([])
     const [nextArticle, setNextArticle] = useState()
     const [prevArticle, setPrevArticle] = useState()
+    const [isListLoading, setIsListLoading] = useState(true)
+    const [visibleLoading, setVisibleLoading] = useState(true)
 
-    // OK - fetch the whole articles
-    // OK - filter the next and previous ID by actual article ID and set nextID and previousID
-    // NA - Then Link and navigate to the articles details
+    const currentArticleIndex = useMemo(() => {
+        return articles.findIndex(x => x.id === article.id)
+    }, [articles, article])
+    const prevArticleIndex = currentArticleIndex - 1
+    const nextArticleIndex = currentArticleIndex + 1
 
     useEffect(() => {
+        setVisibleLoading(true)
+
         fetch(`https://api.spaceflightnewsapi.net/v3/articles/${id}`, {
             method: "GET",
             headers: {
@@ -33,10 +40,15 @@ function Article() {
             .then((data) => {
                 setArticle(data)
             })
+            .finally((data) => setVisibleLoading(false))
             .catch((err) => console.log(err))
-    }, [])
+    }, [id])
 
-    useMemo(() => {
+
+
+    useEffect(() => {
+        setIsListLoading(true)
+
         fetch("https://api.spaceflightnewsapi.net/v3/articles", {
             method: "GET",
             headers: {
@@ -47,50 +59,54 @@ function Article() {
             .then((data) => {
                 setArticles(data)
             })
+            .finally((data) => setIsListLoading(false))
             .catch((err) => console.log(err))
     }, [])
 
     useEffect(() => {
-        const currentArticleIndex = articles.findIndex(x => x.id === article.id)
-        const prevArticleIndex = currentArticleIndex - 1
-        const nextArticleIndex = currentArticleIndex + 1
-
         setPrevArticle(articles[prevArticleIndex])
         setNextArticle(articles[nextArticleIndex])
-    }, [article])
+    }, [nextArticleIndex])
 
     return (
-        <div className={styles.align}>
-            {prevArticle && (
-                <ArticleButton to={`/article/${prevArticle.id}`} text="Prev" />
-            )}
-            {!prevArticle && (
-                <ArticleButton text="Home" to="/" />
-            )}
+        <div>
+            {!visibleLoading && !isListLoading ? (
+                <div className={styles.align}>
+                    {prevArticle && (
+                        <ArticleButton to={`/article/${prevArticle.id}`} text="Prev" />
+                    )}
+                    {!prevArticle && (
+                        <ArticleButton text="Home" to="/" />
+                    )}
 
-            <article className={styles.article_read}>
-                <Container layout="articles_read">
-                    <div className={styles.div_img}>
-                        <img src={article.imageUrl} alt="article image" />
-                    </div>
-                    <div className={styles.notice_data}>
-                        <span>
-                            <strong>updated at:</strong> {moment(article.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}
-                        </span>
-                        <h1>{article.title}</h1>
-                        <p>{article.summary}</p>
-                        <a href={article.url} target="_blank">Click here to see the original news</a>
-                    </div>
-                </Container>
-            </article>
+                    <article className={styles.article_read}>
+                        <Container layout="articles_read">
+                            <div className={styles.div_img}>
+                                <img src={article.imageUrl} alt="article image" />
+                            </div>
+                            <div className={styles.notice_data}>
+                                <span>
+                                    <strong>updated at:</strong> {moment(article.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}
+                                </span>
+                                <h1>{article.title}</h1>
+                                <p>{article.summary}</p>
+                                <a href={article.url} target="_blank">Click here to see the original news</a>
+                            </div>
+                        </Container>
+                    </article>
 
-            {nextArticle && (
-                <ArticleButton to={`/article/${nextArticle.id}`} text="Next" />
-            )}
-            {!nextArticle && (
-                <ArticleButton text="Home" to="/" />
+                    {nextArticle && (
+                        <ArticleButton to={`/article/${nextArticle.id}`} text="Next" />
+                    )}
+                    {!nextArticle && (
+                        <ArticleButton text="Home" to="/" />
+                    )}
+                </div>
+            ) : (
+                <Loading />
             )}
         </div>
+
     )
 }
 
