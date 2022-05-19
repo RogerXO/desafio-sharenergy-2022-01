@@ -14,6 +14,7 @@ import DatePicker from "../layout/datePicker/DatePicker"
 function Home() {
     const { provideArticles } = useContext(ArticlesContext)
 
+    const [isVisibleLoading, setIsVisibleLoading] = useState(true)
     const [articlesPerPage, setArticlesPerPage] = useState(10)
     const [currentPage, setCurrentPage] = useState(0)
     const [search, setSearch] = useState('')
@@ -29,6 +30,13 @@ function Home() {
     const endIndex = startIndex + articlesPerPage
     const currentArticles = listedArticles.slice(startIndex, endIndex)
 
+    useEffect(() => {
+        setIsVisibleLoading(true)
+        if (listedArticles) {
+            setIsVisibleLoading(false)
+        }
+    }, [])
+
     useMemo(() => {
         const sortedArticlesByLatest = articles.sort(function (a, b) {
             return new Date(b.publishedAt) - new Date(a.publishedAt);
@@ -37,7 +45,6 @@ function Home() {
         setListedArticles(sortedArticlesByLatest)
     }, [articles])
 
-    console.log(currentArticles)
 
     // Search filter
     const filteredArticles = useMemo(() => {
