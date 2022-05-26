@@ -49,7 +49,7 @@ function Article() {
     useEffect(() => {
         setPrevArticle(articles[prevArticleIndex])
         setNextArticle(articles[nextArticleIndex])
-    }, [nextArticleIndex])
+    }, [currentArticleIndex])
 
     return (
         <div>

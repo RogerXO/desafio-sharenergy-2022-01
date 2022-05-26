@@ -58,9 +58,7 @@ function Home() {
         }
 
         return articles.filter((article) => {
-            if (article.publishedAt >= startDate && article.publishedAt <= endDate) {
-                return article
-            }
+            return article.publishedAt >= startDate && article.publishedAt <= endDate
         })
     }, [startDate, endDate])
 
