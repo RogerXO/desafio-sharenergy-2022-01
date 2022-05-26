@@ -74,7 +74,7 @@ function Article() {
                                 </span>
                                 <h1>{article.title}</h1>
                                 <p>{article.summary}</p>
-                                <a href={article.url} target="_blank">Click here to see the original news</a>
+                                <a href={article.url} target="_blank" rel="noreferrer">Click here to see the original news</a>
                             </div>
                         </Container>
                     </article>

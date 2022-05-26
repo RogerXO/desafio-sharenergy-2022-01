@@ -37,14 +37,7 @@ function Home() {
         setListedArticles(sortedArticlesByLatest)
     }, [articles])
 
-    // Search filter
-    const filteredArticles = useMemo(() => {
-        const lowerSearch = search.toLowerCase()
 
-        return articles.filter((article) => {
-            return article.title.toLowerCase().includes(lowerSearch)
-        })
-    }, [search])
 
     // Date Filter
     const filteredArticlesByDate = useMemo(() => {
@@ -65,7 +58,15 @@ function Home() {
         setCurrentPage(0)
     }, [articlesPerPage])
 
+    // Search filter
     useEffect(() => {
+        const filteredArticles = () => {
+            const lowerSearch = search.toLowerCase()
+
+            return articles.filter((article) => {
+                return article.title.toLowerCase().includes(lowerSearch)
+            })
+        }
         setListedArticles(filteredArticles)
 
         if (!search) {
