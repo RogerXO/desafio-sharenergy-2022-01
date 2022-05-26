@@ -26,8 +26,6 @@ function Article() {
     const currentArticleIndex = useMemo(() => {
         return articles.findIndex(x => x.id === article.id)
     }, [articles, article])
-    const prevArticleIndex = currentArticleIndex - 1
-    const nextArticleIndex = currentArticleIndex + 1
 
     useEffect(() => {
         setVisibleLoading(true)
@@ -47,6 +45,9 @@ function Article() {
     }, [id])
 
     useEffect(() => {
+        const prevArticleIndex = currentArticleIndex - 1
+        const nextArticleIndex = currentArticleIndex + 1
+
         setPrevArticle(articles[prevArticleIndex])
         setNextArticle(articles[nextArticleIndex])
     }, [currentArticleIndex])
@@ -65,7 +66,7 @@ function Article() {
                     <article className={styles.article_read}>
                         <Container layout="articles_read">
                             <div className={styles.div_img}>
-                                <img src={article.imageUrl} alt="article image" />
+                                <img src={article.imageUrl} alt="article" />
                             </div>
                             <div className={styles.notice_data}>
                                 <span>

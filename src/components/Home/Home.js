@@ -37,7 +37,6 @@ function Home() {
         setListedArticles(sortedArticlesByLatest)
     }, [articles])
 
-
     // Search filter
     const filteredArticles = useMemo(() => {
         const lowerSearch = search.toLowerCase()
