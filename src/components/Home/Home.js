@@ -52,7 +52,7 @@ function Home() {
         return articles.filter((article) => {
             return article.publishedAt >= startDate && article.publishedAt <= endDate
         })
-    }, [startDate, endDate])
+    }, [startDate, endDate, articles])
 
     useEffect(() => {
         setCurrentPage(0)
@@ -72,7 +72,7 @@ function Home() {
         if (!search) {
             setListedArticles(articles)
         }
-    }, [search])
+    }, [search, articles])
 
     function submitDate() {
         setListedArticles(filteredArticlesByDate)

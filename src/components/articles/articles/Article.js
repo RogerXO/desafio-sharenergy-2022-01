@@ -50,7 +50,7 @@ function Article() {
 
         setPrevArticle(articles[prevArticleIndex])
         setNextArticle(articles[nextArticleIndex])
-    }, [currentArticleIndex])
+    }, [currentArticleIndex, articles])
 
     return (
         <div>
