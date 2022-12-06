@@ -9,7 +9,7 @@ function ArticleCard({ id, title, publishedAt, imageUrl }) {
             <article className={styles.article_listed} >
                     <img src={imageUrl} alt="Representation about notice content" />
                 <div className= {styles.article_title }>
-                    <h3>{title}</h3>
+                    <h3>{title}</h3>    
                     <p>{publishedAt}</p>
                 </div>
             </article >

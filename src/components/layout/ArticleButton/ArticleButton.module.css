@@ -9,7 +9,7 @@
 }
 
 .article_btn:hover {
-    background-color: rgba(199, 191, 191, 0.795);
+    background-color: rgb(252 61 33);
     transition: 0.4s;
     cursor: pointer;
 }

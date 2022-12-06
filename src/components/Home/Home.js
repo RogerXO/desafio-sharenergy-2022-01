@@ -76,6 +76,8 @@ function Home() {
 
     return (
         <section>
+            <img src="https://www.onlinepalette.com/wp-content/uploads/2021/07/NASA-logo.png" alt="Nasa logo" />
+
             <div className={styles.search_div}>
                 <input
                     className={styles.search_input}
@@ -95,7 +97,7 @@ function Home() {
                     setArticlesPerPage={setArticlesPerPage}
                 />
             </div>
-            <div>
+            <div className={styles.container_div}>
                 {articles && currentArticles.map((article) => (
                     <ArticleCard
                         key={article.id}

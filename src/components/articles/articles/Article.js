@@ -53,36 +53,40 @@ function Article() {
     return (
         <div>
             {!visibleLoading ? (
-                <div className={styles.align}>
-                    {prevArticle && (
-                        <ArticleButton to={`/article/${prevArticle.id}`} text="Prev" />
-                    )}
-                    {!prevArticle && (
-                        <ArticleButton text="Home" to="/" />
-                    )}
+                <div className={styles.column}>
+                    <img src="https://www.onlinepalette.com/wp-content/uploads/2021/07/NASA-logo.png" alt="Nasa logo" />
 
-                    <article className={styles.article_read}>
-                        <Container layout="articles_read">
-                            <div className={styles.div_img}>
-                                <img src={article.imageUrl} alt="article" />
-                            </div>
-                            <div className={styles.notice_data}>
-                                <span>
-                                    <strong>updated at:</strong> {moment(article.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}
-                                </span>
-                                <h1>{article.title}</h1>
-                                <p>{article.summary}</p>
-                                <a href={article.url} target="_blank" rel="noreferrer">Click here to see the original news</a>
-                            </div>
-                        </Container>
-                    </article>
+                    <div className={styles.align}>
+                        {prevArticle && (
+                            <ArticleButton to={`/article/${prevArticle.id}`} text="Prev" />
+                        )}
+                        {!prevArticle && (
+                            <ArticleButton text="Home" to="/" />
+                        )}
 
-                    {nextArticle && (
-                        <ArticleButton to={`/article/${nextArticle.id}`} text="Next" />
-                    )}
-                    {!nextArticle && (
-                        <ArticleButton text="Home" to="/" />
-                    )}
+                        <article className={styles.article_read}>
+                            <Container layout="articles_read">
+                                <div className={styles.div_img}>
+                                    <img src={article.imageUrl} alt="article" />
+                                </div>
+                                <div className={styles.notice_data}>
+                                    <span>
+                                        <strong>updated at:</strong> {moment(article.updatedAt).format("MMMM Do YYYY, h:mm:ss a")}
+                                    </span>
+                                    <h1>{article.title}</h1>
+                                    <p>{article.summary}</p>
+                                    <a href={article.url} target="_blank" rel="noreferrer">Click here to see the original news</a>
+                                </div>
+                            </Container>
+                        </article>
+
+                        {nextArticle && (
+                            <ArticleButton to={`/article/${nextArticle.id}`} text="Next" />
+                        )}
+                        {!nextArticle && (
+                            <ArticleButton text="Home" to="/" />
+                        )}
+                    </div>
                 </div>
             ) : (
                 <Loading />
