@@ -1,6 +1,10 @@
-section{
+section {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .search_div {
@@ -13,7 +17,7 @@ section{
 }
 
 .search_input {
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
     width: 40%;
     padding: 3px;
 }

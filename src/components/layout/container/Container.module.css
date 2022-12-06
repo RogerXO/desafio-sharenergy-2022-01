@@ -7,9 +7,8 @@
     flex-direction: column;
     align-items: center;
     padding: 10px 0px;
-    background-color: rgba(239, 233, 231, 0.541);
+    background-color: rgba(73, 105, 161, 0.562);
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.11);
-    border-radius: 5px;
 }
 
 .articles_read {
@@ -18,7 +17,6 @@
     height: 100%;
     margin: auto;
     border: 2px solid black;
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
     gap: 15px;

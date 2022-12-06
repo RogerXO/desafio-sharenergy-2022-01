@@ -12,11 +12,9 @@ export const ArticlesProvider = ({ children }) => {
                 "content-type": "application/json"
             }
         })
-            .then((resp) => resp.json())
-            .then((data) => {
-                setProvideArticles(data)
-            })
-            .catch((err) => console.log(err))
+            .then(resp => resp.json())
+            .then(data => setProvideArticles(data))
+            .catch(err => console.log(err))
     }
 
     useEffect(() => {

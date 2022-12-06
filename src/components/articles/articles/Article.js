@@ -37,10 +37,8 @@ function Article() {
             },
         })
             .then((resp) => resp.json())
-            .then((data) => {
-                setArticle(data)
-            })
-            .finally((data) => setVisibleLoading(false))
+            .then((data) => setArticle(data))
+            .finally(() => setVisibleLoading(false))
             .catch((err) => console.log(err))
     }, [id])
 
@@ -90,7 +88,6 @@ function Article() {
                 <Loading />
             )}
         </div>
-
     )
 }
 

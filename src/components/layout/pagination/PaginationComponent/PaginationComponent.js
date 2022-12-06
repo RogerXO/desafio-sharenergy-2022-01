@@ -7,7 +7,7 @@ function PaginationComponent({ pages, setCurrentPage, currentPage }) {
             {Array.from(Array(pages), (article, index) => {
                 return <button
                     key={index}
-                    style={index === currentPage ? { backgroundColor: "lightgrey" } : null}
+                    style={index === currentPage ? { backgroundColor: "rgba(252, 62, 33)" } : null}
                     className={styles.pagination_button}
                     value={index}
                     onClick={

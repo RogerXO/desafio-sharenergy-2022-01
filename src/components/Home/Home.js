@@ -1,12 +1,8 @@
-import styles from "./Home.module.css"
-
 import { useState, useEffect, useMemo, useContext } from "react"
-
 import moment from 'moment'
-
+import styles from "./Home.module.css"
 import { ArticlesContext } from "../../contexts/ContextArticles"
 import ArticleCard from "../articles/articleCard/ArticleCard"
-import Container from "../layout/container/Container"
 import PaginationComponent from "../layout/pagination/PaginationComponent/PaginationComponent"
 import PaginationSelect from "../layout/pagination/PaginationSelect/PaginationSelect"
 import DatePicker from "../layout/datePicker/DatePicker"
@@ -37,8 +33,6 @@ function Home() {
         setListedArticles(sortedArticlesByLatest)
     }, [articles])
 
-
-
     // Date Filter
     const filteredArticlesByDate = useMemo(() => {
         const formatedDate = articles.map((article) => {
@@ -57,6 +51,8 @@ function Home() {
     useEffect(() => {
         setCurrentPage(0)
     }, [articlesPerPage])
+
+    console.log(articles)
 
     // Search filter
     useEffect(() => {
@@ -99,16 +95,17 @@ function Home() {
                     setArticlesPerPage={setArticlesPerPage}
                 />
             </div>
-            <Container layout="articles_list">
+            <div>
                 {articles && currentArticles.map((article) => (
                     <ArticleCard
                         key={article.id}
                         id={article.id}
+                        imageUrl={article.imageUrl}
                         title={article.title}
                         publishedAt={moment(article.publishedAt).format("MM/DD/YYYY")}
                     />
                 ))}
-            </Container>
+            </div>
             <PaginationComponent
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
