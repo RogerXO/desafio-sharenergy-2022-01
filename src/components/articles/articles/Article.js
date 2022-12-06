@@ -2,7 +2,7 @@ import styles from './Article.module.css'
 
 import moment from "moment"
 
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useState, useEffect, useMemo, useContext } from 'react'
 
 import { ArticlesContext } from '../../../contexts/ContextArticles'
@@ -54,7 +54,9 @@ function Article() {
         <div>
             {!visibleLoading ? (
                 <div className={styles.column}>
-                    <img src="https://www.onlinepalette.com/wp-content/uploads/2021/07/NASA-logo.png" alt="Nasa logo" />
+                    <Link to="/">
+                        <img src="https://www.onlinepalette.com/wp-content/uploads/2021/07/NASA-logo.png" alt="Nasa logo" />
+                    </Link>
 
                     <div className={styles.align}>
                         {prevArticle && (
