@@ -52,8 +52,6 @@ function Home() {
         setCurrentPage(0)
     }, [articlesPerPage])
 
-    console.log(articles)
-
     // Search filter
     useEffect(() => {
         const filteredArticles = () => {
@@ -83,7 +81,8 @@ function Home() {
                     className={styles.search_input}
                     type="search"
                     placeholder=" Search for..."
-                    value={search} onChange={(e) => setSearch(e.target.value)}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
                 <DatePicker
                     endDate={endDate}

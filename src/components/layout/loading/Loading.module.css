@@ -4,9 +4,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(to right, #051635, #0b3d91);
 }
 
 .loader {
-    width: 70px;
-    background-color: rgba(41, 38, 38, 0);
+    width: 100px;
 }

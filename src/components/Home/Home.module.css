@@ -10,8 +10,9 @@ section {
 section > img {
     width: 100px;
     border-radius: 10px;
-    margin-top: 30px;
+    margin: 20px auto 0px;
     cursor: pointer;
+    box-shadow: 2px 2px 15px 3px black;
 }
 
 .search_div {
@@ -24,9 +25,10 @@ section > img {
 }
 
 .search_input {
-    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgb(252 61 33);
     width: 40%;
-    padding: 3px;
+    padding: 7px;
+    border-radius: 10px;
 }
 
 .container_div {

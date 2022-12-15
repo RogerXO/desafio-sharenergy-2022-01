@@ -14,7 +14,7 @@ function DatePicker({ startDate, endDate, setStartDate, setEndDate, submitDate }
         <div className={styles.date_range_picker}>
             <div className={styles.date_picker}>
                 <label htmlFor="fromDate">From date:</label>
-                <input
+                <input 
                     type="date"
                     name="fromDate"
                     id="fromDate"

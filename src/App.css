@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: rgb(11, 61, 145);
+  background: linear-gradient(to right, #051635, #0b3d91);
   color: black;
   height: 100%;
   width: 100%;
