@@ -33,13 +33,12 @@
 
 .div_img img {
     width: 60%;
+    max-width: 500px;
     height: 100%;
+    max-height: 300px;
     margin: 0px auto;
     border-radius: 0px;
-    -moz-box-shadow: inset 10px 10px 50px black;
-    -webkit-box-shadow: inset 10px 10px 50px black;
-    box-shadow: inset 10px 10px 50px black;
-    filter: drop-shadow(0 0 0.75rem rgba(128, 128, 128, 0.616));
+    filter: drop-shadow(0 8px 16px rgba(180, 173, 173, 0.616));
 }
 
 .notice_data {
@@ -50,8 +49,18 @@
 }
 
 .notice_data span {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     margin: 0 0px 5px 40px;
+}
+
+.notice_data h1 {
+    font-size: 25px;
+}
+
+.notice_data p {
+    font-family: 'Oxygen', sans-serif;
+    font-size: 15px;
 }
 
 .notice_data a {
